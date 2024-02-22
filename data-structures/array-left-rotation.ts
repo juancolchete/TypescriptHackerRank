@@ -34,19 +34,18 @@ function readLine(): string {
 
 function rotateLeft(d: number, arr: number[]): number[] {
   // Write your code here
-  let tempArr = [...arr];
-  let result = arr;
-  for(let r =0; r < d; r++){
-    for(let i = 0; i < result.length;i++){
-      let leftIndex = 0;
-      if(i == 0){
-        leftIndex = result.length -1;
-      }else{
-        leftIndex = i - 1;
-      }
-      result[leftIndex] = tempArr[i];
-    }
-    tempArr = [...result]
+  let walk = 0;
+  let firstElementIndex = 0;
+  let tempArr = [...arr]
+  let result = []
+  if(d > arr.length){
+   walk = Math.floor(d/5) 
+  }else{
+    walk = d
+  }
+  firstElementIndex = arr.length - walk;
+  for(let i = firstElementIndex; i < arr.length+firstElementIndex;i++){
+   result[i % arr.length] = tempArr[i-firstElementIndex]
   }
   return result;
 }
